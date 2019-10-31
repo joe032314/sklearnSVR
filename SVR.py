@@ -11,20 +11,22 @@ iris = datasets.load_iris()
 X = iris.data[:, :2]  # we only take the first two features.
 Y = iris.target
 
-clf = SVR(lernel = 'rbf', C = 1.0, gamma = 0.1)
-clf.fit(X,Y)
+svr = SVR(kernel = 'rbf', C = 1.0, gamma = 0.1, epsilon=0.1)
 
 x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
 y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
 
+model_color = ['m', 'c', 'g']
 plt.figure(2, figsize=(8, 6))
-plt.clf()
 # Plot the training points
+for i in enumerate(model_color):
+    plt.plot(X,svr.fit(X,Y).predict(X), color = model_color[i])
 plt.scatter(X[:, 0], X[:, 1], c=Y, cmap=plt.cm.Paired)
-plt.xlabel('Sepal length')
-plt.ylabel('Sepal width')
 
-plt.xlim(x_min, x_max)
-plt.ylim(y_min, y_max)
-plt.xticks(())
-plt.yticks(())
+plt.xlabel('Sepal length') #標記X軸名稱
+plt.ylabel('Sepal width')  #標記Y軸名稱
+plt.xlim(x_min, x_max) #設定X軸的範圍
+plt.ylim(y_min, y_max) #設定Y軸的範圍
+plt.xticks()
+plt.yticks()
+plt.show()
