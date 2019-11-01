@@ -6,7 +6,11 @@ from sklearn.svm import SVR
 import numpy as np
 from sklearn.decomposition import PCA
 
+
+print('lll')
+
 print("hello")
+
 
 # import some data to play with
 iris = datasets.load_iris()
